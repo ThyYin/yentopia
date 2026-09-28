@@ -12,7 +12,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "deploy-commands": "tsx src/deploy-commands.ts",
-    "test": "tsx --test test/validation.test.ts test/formatter.test.ts test/cooldown.test.ts test/config.test.ts test/frankfurterProvider.test.ts test/currencyService.test.ts test/commands.test.ts test/prefix.test.ts test/project.test.ts",
+    "test": "tsx --test test/validation.test.ts test/formatter.test.ts test/cooldown.test.ts test/config.test.ts test/frankfurterProvider.test.ts test/currencyService.test.ts test/commands.test.ts test/prefix.test.ts test/project.test.ts test/entrypoint.test.ts",
     "test:live": "tsx --test test/live.test.ts"
   },
   "dependencies": {

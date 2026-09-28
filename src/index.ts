@@ -1,7 +1,6 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import 'dotenv/config';
-import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import { createCommands } from './commands/index.js';
 import { loadDiscordConfig, USER_COOLDOWN_MS } from './config.js';
 import { createInteractionHandler } from './discord/handler.js';
@@ -9,6 +8,7 @@ import { createPrefixHandler } from './prefix/handler.js';
 import { FrankfurterProvider } from './services/frankfurterProvider.js';
 import { CurrencyService } from './services/currencyService.js';
 import { Cooldown } from './utils/cooldown.js';
+import { shouldStartBot } from './utils/entrypoint.js';
 import { logger } from './utils/logger.js';
 
 async function main(): Promise<void> {
@@ -78,9 +78,7 @@ async function main(): Promise<void> {
 }
 
 function isDirectRun(): boolean {
-  const entry = process.argv[1];
-  if (!entry) return false;
-  return import.meta.url === pathToFileURL(path.resolve(entry)).href;
+  return shouldStartBot(import.meta.url, process.argv[1], process.env.pm_exec_path);
 }
 
 if (isDirectRun()) {
@@ -88,4 +86,6 @@ if (isDirectRun()) {
     logger.error('Yentopia failed to start', error);
     process.exit(1);
   });
+} else {
+  logger.warn(`Yentopia was loaded without starting. module=${fileURLToPath(import.meta.url)}`);
 }
