@@ -1,0 +1,27 @@
+{
+  "name": "yentopia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple international currency converter for Discord.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "deploy-commands": "tsx src/deploy-commands.ts",
+    "test": "tsx --test test/validation.test.ts test/formatter.test.ts test/cooldown.test.ts test/config.test.ts test/frankfurterProvider.test.ts test/currencyService.test.ts test/commands.test.ts test/prefix.test.ts test/project.test.ts",
+    "test:live": "tsx --test test/live.test.ts"
+  },
+  "dependencies": {
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.6",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
